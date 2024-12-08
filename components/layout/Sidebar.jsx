@@ -3,17 +3,19 @@ import { useSidebar } from "@/hooks/useSidebar";
 import { cn } from "@/lib/utils";
 import { SidebarToggle } from "./SidebarToggle";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { PencilIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "홈", href: "/" },
   { name: "물리학 개념", href: "/concepts" },
-  { name: "예제 문제", href: "/problems" },
-  { name: "애니메이션", href: "/animations" },
+  { name: "기출 풀이", href: "/problems" },
   { name: "커뮤니티", href: "/community" },
 ];
 
 export function Sidebar() {
   const { isOpen } = useSidebar();
+  const router = useRouter();
 
   return (
     <>
@@ -32,6 +34,16 @@ export function Sidebar() {
             <h1 className="text-2xl font-bold text-gray-800">
               물리하는 쥐새끼
             </h1>
+          </div>
+
+          {/* 글쓰기 버튼 추가 */}
+          <div className="px-4 py-3">
+            <button
+              onClick={() => router.push("/editor/new")}
+              className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              <PencilIcon className="w-5 h-5 mr-2" />새 글 작성
+            </button>
           </div>
 
           {/* 네비게이션 */}
